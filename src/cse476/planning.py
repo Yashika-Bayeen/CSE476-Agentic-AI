@@ -120,7 +120,7 @@ def _run(
 
         for call in message.tool_calls:
             name = call.function.name
-            args = json.loads(call.function.arguments or "{}")
+            args = json.loads(call.function.arguments or "{}") or {}
             observation = (
                 REGISTRY[name](**args)
                 if name in REGISTRY

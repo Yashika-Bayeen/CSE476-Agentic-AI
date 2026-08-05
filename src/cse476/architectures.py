@@ -135,7 +135,7 @@ def _loop(client, model, messages, max_steps, tools=True, verbose=True, tag=""):
 
         for call in message.tool_calls:
             name = call.function.name
-            args = json.loads(call.function.arguments or "{}")
+            args = json.loads(call.function.arguments or "{}") or {}
             result = (
                 REGISTRY[name](**args)
                 if name in REGISTRY
